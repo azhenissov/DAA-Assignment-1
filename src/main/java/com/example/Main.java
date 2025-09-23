@@ -8,23 +8,12 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        int[] arr = {12, 3, 5, 7, 19, 26, 4, 8};
         Metrics metrics = new Metrics();
-        int[] arr = {5,2,9,-1,6,0};
 
-        QuickSort.sort(arr, metrics);
-
-        CsvWriter csvWriter = new CsvWriter("metrics.csv");
-        csvWriter.writeRow("quicksort", arr.length, metrics);
-
-        System.out.println("Sorted Array:");
-        for (int n : arr){
-            System.out.print(n + " ");
-        }
-        System.out.println(" ");
-        System.out.println(metrics.getDuration()/1000000.0);
-
-        if(!SortUtils.isSorted(arr)){ // Guard checker
-            throw new IllegalStateException("Array is not sorted");
-        }
+        int k = 4;
+        int val = DeterministicSelect.select(arr, k, metrics);
+        System.out.println("The " + (k + 1) + "-th smallest element is " + val);
+        System.out.println("Runtime " +metrics.getDuration() / 1000000.0);
     }
 }
