@@ -1,24 +1,21 @@
 package com.example;
 
-import com.example.Metrics;
-import com.example.CsvWriter;
 
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws IOException, IOException {
+    public static void main(String[] args) throws IOException {
         Metrics metrics = new Metrics();
+        int[] arr = {5,2,9,-1,6,0};
+
+        MergeSort.sort(arr,metrics);
+
         CsvWriter csvWriter = new CsvWriter("metrics.csv");
+        csvWriter.writeRow("mergesort", arr.length, metrics);
 
-        // Simulate algorithm run
-        metrics.startTimer();
-        metrics.incrementComparisons();
-        metrics.incrementSwaps();
-        metrics.incrementRecursionDepth();
-        metrics.incrementAllocations();
-        metrics.stopTimer();
-
-        // Write metrics
-        csvWriter.writeRow("mergesort", 1000, metrics);
+        System.out.println("Sorted Array:");
+        for (int n : arr){
+            System.out.print(n + " ");
+        }
     }
 }
