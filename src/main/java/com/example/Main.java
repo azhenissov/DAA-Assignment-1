@@ -1,6 +1,9 @@
 package com.example;
 
 
+import com.example.util.CsvWriter;
+import com.example.util.Metrics;
+
 import java.io.IOException;
 
 public class Main {
@@ -19,5 +22,9 @@ public class Main {
         }
         System.out.println(" ");
         System.out.println(metrics.getDuration()/1000000.0);
+
+        if(!SortUtils.isSorted(arr)){ // Guard checker
+            throw new IllegalStateException("Array is not sorted");
+        }
     }
 }

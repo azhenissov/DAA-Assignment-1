@@ -1,5 +1,7 @@
 package com.example;
 
+import com.example.util.Metrics;
+
 import java.util.Random;
 
 public class QuickSort {
@@ -25,10 +27,10 @@ public class QuickSort {
         }
         // Randomized pivot
         int pivotIndex = left + RAND.nextInt(right - left + 1);
-        swap(arr, pivotIndex, right, metrics);
+            SortUtils.swap(arr, pivotIndex, right, metrics);
 
         //partition
-        int p = partition(arr, left, right, metrics);
+        int p = SortUtils.partition(arr, left, right, metrics);
 
         // recurse into smaller side first
         if(p - left < right - p){
@@ -40,21 +42,6 @@ public class QuickSort {
         }
     }
 
-    private static int partition(int[] arr, int left, int right, Metrics metrics) {
-        int pivot = arr[right];
-        int i = left - 1;
-
-        for (int j = left; j < right; j++) {
-            metrics.incrementComparisons();
-            if (arr[j] <= pivot) {
-                i++;
-                swap(arr, i, j, metrics);
-            }
-        }
-
-        swap(arr, i + 1, right, metrics);
-        return i + 1;
-    }
 
     private static void insertionSort(int[] arr, int left, int right, Metrics metrics) {
         for (int i = 1; i < arr.length; i++) {
@@ -74,12 +61,5 @@ public class QuickSort {
         }
     }
 
-    public static void swap(int[] arr, int i, int j, Metrics metrics) {
-        if (i!=j){
-            int temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-            metrics.incrementSwaps();
-        }
-    }
+
 }

@@ -1,5 +1,7 @@
 package com.example;
 
+import com.example.util.Metrics;
+
 public class MergeSort {
     private static final int CUTOFF = 12;
 
