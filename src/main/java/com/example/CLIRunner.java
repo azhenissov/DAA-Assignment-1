@@ -68,7 +68,7 @@ public class CLIRunner {
         CsvWriter writer = new CsvWriter(output);
         writer.writeRow(algo, size, metrics);
 
-        System.out.printf("✅ %s done (N=%d). Runtime: %.3f ms%n",
+        System.out.printf("%s done (N=%d). Runtime: %.3f ms%n",
                 algo, size, metrics.getDuration() / 1_000_000.0);
     }
 }
