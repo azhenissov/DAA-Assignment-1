@@ -85,9 +85,65 @@ Output is written to metrics.csv for later plotting.
 
 ---
 
+### Report & Analysis
+
+## Master Theorem Cases
+
+- **We use the Master Theorem to analyze standard recurrences:**
+  - Case 1 (Sublinear work dominates):
+  
+    T(n) = aT(n/b) + O(n^d), with d < log_b(a).
+
+    Example: Binary Search
+  
+  T(n) = T(n/2) + O(1) → O(log n).
+  - Case 2 (Balanced work):
+    
+    f(n) = Θ(n^log_b(a)).
+    
+    Example: MergeSort
+    
+    T(n) = 2T(n/2) + Θ(n) → O(n log n).
+
+  - Case 3 (Outside work dominates):
+    
+    f(n) grows faster than n^log_b(a).
+    
+    Example: Strassen-like preprocessing.
+
+---
+
+## Akra–Bazzi Intuition
+
+- **The Akra–Bazzi theorem generalizes Master Theorem to unbalanced recursions.**
+- QuickSort recurrence:
+- 
+  T(n) = T(U) + T(n – U – 1) + Θ(n), with random pivot U.
+  
+  Expected complexity: O(n log n).
+
+- Deterministic Select (MoM5):
+  
+  Groups of 5 → median-of-medians pivot → guarantees linear O(n) time.
+  
+  Recurrence: T(n) ≤ T(n/5) + T(7n/10) + O(n).
+
+---
+
+## Experimental Results
+- **We ran algorithms on increasing input sizes and collected metrics.
+  Plots (see docs/plots/) confirm theoretical behavior:**
+  - MergeSort → Θ(n log n)
+
+  - QuickSort (randomized pivot) → Θ(n log n) expected
+
+  - Deterministic Select → Θ(n)
+
+  - Closest Pair of Points → Θ(n log n)
 ## Development 
 
 - **Conventional commits are used:**
 - Feat: new algorithms or CLI features
 - refactor: internal utilities
 - test: unit test
+
